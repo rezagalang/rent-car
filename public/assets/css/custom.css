@@ -1,0 +1,23 @@
+.card .card-header {
+    padding-bottom: 0.5rem;
+}
+.card-hr {
+    margin: 0;
+}
+.btn-nol,
+.deleteBtn {
+    margin-bottom: 0;
+}
+.rounded-pill {
+    border-radius: 10px !important;
+}
+.table tr {
+    font-size: 14px;
+    align-items: center;
+}
+.table-bordered > :not(caption) > * {
+    border-width: 1px 1px;
+}
+.table-bordered > :not(caption) > * > * {
+    border-width: 0 1px;
+}
