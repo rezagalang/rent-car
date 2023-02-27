@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CarController extends Controller
@@ -11,12 +12,12 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::all();
-        return view('pages.admin.car.index', compact('cars'));
+        return view('admin.car.index', compact('cars'));
     }
 
     public function create()
     {
-        return view('pages.admin.car.add');
+        return view('admin.car.add');
     }
     
     public function store(Request $request)
@@ -29,9 +30,15 @@ class CarController extends Controller
             'transmisi' => 'required',
             'bahanBakar' => 'required',
             'deskripsi' => 'required',
+            'image' => 'required|file|max:1024',
         ]);
-
+        
         $car = new Car;
+
+        if($request->file('image')) {
+            $car->image = $request->file('image')->store('images');
+        }
+
         $car->namaBarang = $request->namaBarang;
         $car->merk = $request->merk;
         $car->harga = $request->harga;
@@ -52,12 +59,12 @@ class CarController extends Controller
 
     public function edit(Car $car)
     {
-        return view('pages.admin.car.edit', compact('car'));
+        return view('admin.car.edit', compact('car'));
     }
 
     public function update(Request $request, Car $car)
     {
-        $request->validate([
+        $dataCar = $request->validate([
             'namaBarang' => 'required',
             'merk' => 'required',
             'harga' => 'required|numeric',
@@ -65,17 +72,17 @@ class CarController extends Controller
             'transmisi' => 'required',
             'bahanBakar' => 'required',
             'deskripsi' => 'required',
+            'image' => 'required|file|max:1024',
         ]);
 
-        Car::where('id', $car->id)->update([
-            'namaBarang' => $request->namaBarang,
-            'merk' => $request->merk,
-            'harga' => $request->harga,
-            'tempatDuduk' => $request->tempatDuduk,
-            'transmisi' => $request->transmisi,
-            'bahanBakar' => $request->bahanBakar,
-            'deskripsi' => $request->deskripsi,
-        ]);
+        if($request->file('image')) {
+            if($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+                $dataCar['image'] = $request->file('image')->store('images');
+        }
+        
+        Car::where('id', $car->id)->update($dataCar);
 
         Alert::toast('Data berhasil dihapus', 'success')->autoClose(5000);
         return redirect()->route('car.index');
@@ -83,6 +90,9 @@ class CarController extends Controller
 
     public function destroy(Car $car)
     {
+        if($car->image) {
+            Storage::delete($car->id);
+        }
         $car->delete();
         Alert::toast('Data berhasil dihapus', 'success')->autoClose(5000);
         return redirect()->route('car.index');

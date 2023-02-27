@@ -11,18 +11,18 @@ class AdmController extends Controller
 {
     public function dashboard()
     {
-        return view('pages.admin.dashboard');
+        return view('admin.dashboard');
     }
     
     public function user()
     {
         $users = User::role('2')->orderBy('created_at', 'ASC')->get();
-        return view('pages.admin.user.index', compact('users'));
+        return view('admin.user.index', compact('users'));
     }
 
     public function create()
     {
-        return view('pages.admin.user.add');
+        return view('admin.user.add');
     }
 
     public function store(Request $request)
@@ -47,7 +47,7 @@ class AdmController extends Controller
 
     public function edit(Request $request, User $user)
     {
-        return view('pages.admin.user.edit', compact('user'));
+        return view('admin.user.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
