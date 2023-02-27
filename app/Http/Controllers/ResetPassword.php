@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Notifications\Notifiable;
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Notifications\ForgotPassword;
+use Illuminate\Notifications\Notifiable;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ResetPassword extends Controller
 {
@@ -13,23 +14,20 @@ class ResetPassword extends Controller
 
     public function show()
     {
-        return view('auth.reset-password');
+        return view('admin.user.reset');
     }
 
-    public function routeNotificationForMail() {
-        return request()->email;
-    }
-
-    public function send(Request $request)
+    public function change(Request $request)
     {
-        $email = $request->validate([
-            'email' => ['required']
+        $request->validate([
+            'new_password' => ['required'],
+            'new_confirm_password' => ['same:new_password'],
         ]);
-        $user = User::where('email', $email)->first();
 
-        if ($user) {
-            $this->notify(new ForgotPassword($user->id));
-            return back()->with('succes', 'An email was send to your email address');
-        }
+        User::find(auth()->user()->id)
+            ->update(['password' => bcrypt($request->new_password)]);
+
+        Alert::toast('Password berhasil diubah', 'success')->autoClose(5000);
+        return redirect()->back();
     }
 }

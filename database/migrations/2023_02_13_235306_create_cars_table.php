@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('namaBarang');
-            $table->string('merk');
+            $table->string('namaBarang', 50);
+            $table->string('merk', 50);
             $table->integer('harga');
             $table->integer('tempatDuduk');
-            $table->string('transmisi');
-            $table->string('bahanBakar');
+            $table->string('transmisi', 50);
+            $table->string('bahanBakar', 50);
             $table->text('deskripsi');
+            $table->string('image', 100);
             $table->timestamps();
         });
     }
