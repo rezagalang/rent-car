@@ -14,7 +14,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Barang</th>
+                                <th>Jenis Mobil</th>
                                 <th>Harga</th>
                                 <th>Transmisi</th>
                                 <th>Bahan Bakar</th>
@@ -26,7 +26,7 @@
                             @foreach($cars as $car)
                                 <tr>
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $car->namaBarang }}</td>
+                                    <td>{{ $car->jenisMobil }}</td>
                                     <td>{{ $car->harga }}</td>
                                     <td>{{ $car->transmisi }}</td>
                                     <td>{{ $car->bahanBakar }}</td>

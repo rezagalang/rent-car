@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cars', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('jenisMobil', 50);
-            $table->string('merk', 50);
-            $table->integer('harga');
-            $table->integer('tempatDuduk');
-            $table->string('transmisi', 50);
-            $table->string('bahanBakar', 50);
-            $table->text('deskripsi');
-            $table->string('image', 100);
+            $table->foreignId('car_id')->constrained();
+            $table->string('noSewa', 50);
+            $table->string('nama', 50);
+            $table->string('email', 50);
+            $table->string('noTelp', 50);
+            $table->text('alamat');
+            $table->date('tglSewa');
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cars');
+        Schema::dropIfExists('orders');
     }
 };

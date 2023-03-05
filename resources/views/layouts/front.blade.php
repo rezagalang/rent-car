@@ -12,7 +12,7 @@
     <!--     Fonts and icons     -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet"> 
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;600&display=swap' rel='stylesheet'>
     <!-- Nucleo Icons -->
     <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />    
@@ -34,6 +34,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
     @yield('content')
+    @include('sweetalert::alert')
 
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>

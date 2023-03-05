@@ -23,7 +23,7 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'namaBarang' => 'required',
+            'jenisMobil' => 'required',
             'merk' => 'required',
             'harga' => 'required|numeric',
             'tempatDuduk' => 'required|numeric',
@@ -39,7 +39,7 @@ class CarController extends Controller
             $car->image = $request->file('image')->store('images');
         }
 
-        $car->namaBarang = $request->namaBarang;
+        $car->jenisMobil = $request->jenisMobil;
         $car->merk = $request->merk;
         $car->harga = $request->harga;
         $car->tempatDuduk = $request->tempatDuduk;
@@ -65,7 +65,7 @@ class CarController extends Controller
     public function update(Request $request, Car $car)
     {
         $dataCar = $request->validate([
-            'namaBarang' => 'required',
+            'jenisMobil' => 'required',
             'merk' => 'required',
             'harga' => 'required|numeric',
             'tempatDuduk' => 'required|numeric',

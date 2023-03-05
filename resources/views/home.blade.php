@@ -1,6 +1,7 @@
 @extends('layouts.front')
 
 @section('title', 'Home')
+
 @section('content')
     <section class="secthero" id="hero">
         <header class="header">
@@ -118,12 +119,12 @@
                                 <div class="card-header pb-0 pt-3 bg-transparent product">
                                     @if ($car->image)
                                         <div>
-                                            <img src="{{ asset('storage/'.$car->image) }}" alt="{{ $car->namaBarang }}" class="img-fluid">
+                                            <img src="{{ asset('storage/'.$car->image) }}" alt="{{ $car->jenisMobil }}" class="img-fluid">
                                         </div>
                                     @endif
                                 </div>
                                 <div class="card-body p-3">
-                                    <h4 class="text-capitalize">{{ $car->namaBarang }}</h4>
+                                    <h4 class="text-capitalize">{{ $car->jenisMobil }}</h4>
                                     <h6>{{ 'Rp. '.$car->harga.' / Day' }}</h6>
                                     <a href="{{ route('detail', $car->id) }}" class="btn btn-warning">Lebih Detail</a>
                                 </div>

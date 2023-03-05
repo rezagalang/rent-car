@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdmController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LoginController;
@@ -23,6 +24,7 @@ Route::get('/sewa', [FrontController::class, 'sewa'])->middleware('guest')->name
 Route::get('/tentang', [FrontController::class, 'tentang'])->middleware('guest')->name('tentang');
 Route::get('/kontak', [FrontController::class, 'kontak'])->middleware('guest')->name('kontak');
 Route::get('/{car}/detail', [FrontController::class, 'detail'])->middleware('guest')->name('detail');
+Route::post('/send', [EmailController::class, 'send'])->middleware('guest')->name('send.email');
 
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
