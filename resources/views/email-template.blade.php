@@ -94,36 +94,25 @@
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:bottom;" width="100%">
                                     <tr>
                                         <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                            <table align="center" border="0" cellpadding="0" cellspacing="0"
-                                                role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                                                <tbody>
-                                                    <tr>
-                                                         <td style="width:64px;">
-                                                            <img height="auto" src="https://i.imgur.com/KO1vcE9.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="64" />
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:24px;font-weight:bold;line-height:22px;text-align:center;color:#525252;">
-                                                Thank you for your order
+                                                Terima kasih telah melakukan penyewaan di RentCar
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:22px;text-align:left;color:#525252;">
-                                                <p>Hi {{ $body }},</p>
+                                                <p>Halo {{ $nama }},</p>
 
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                                                    volutpat ut est ac dignissim. Donec pulvinar ligula metus, sed
-                                                    imperdiet quam pretium at. Cras finibus hendrerit magna nec euismod.
-                                                    Ut eget
-                                                    justo vel enim ultrices pharetra. Morbi tellus libero, sollicitudin
-                                                    pulvinar porta ac, auctor sed neque.</p>
+                                                <p>Kami Telah selesai memproses pesanan Anda.</p>
+                                                <p>Silahkan melakukan pembayaran dengan scan QRIS. <a href="#"><u>Scan QRIS disini.</u></a></p>
+                                                <p>Setelah melakukan pembayaran, silahkan konfirmasi pembayaran anda <a href="#"><u>disini</u></a> dengan mengirim bukti pembayaran anda.</p>
+                                                <p>Anda memiliki waktu 1x24 jam untuk melakukan pembayaran dan konfirmasi pembayaran jika tidak maka order anda akan dibatalkan secara otomatis.</p>
+                                                <br>
+                                                <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:18px;font-weight:bold;line-height:22px;text-align:center;color:#525252;">
+                                                    [Pesanan #{{ $noSewa }}] <br> ({{ date("d M Y", strtotime($tglSewa)) }})
+                                                </div>
+                                                <br>
                                             </div>
                                         </td>
                                     </tr>
@@ -131,59 +120,37 @@
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;">
                                                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
-                                                    <th style="padding: 0 15px 10px 0;">Item</th>
-                                                    <th style="padding: 0 15px;">Qt.</th>
-                                                    <th style="padding: 0 0 0 15px;" align="right">Price</th>
+                                                    <th style="padding: 0 15px 10px 0;">Jenis Mobil</th>
+                                                    <th style="padding: 0 15px;">Hari</th>
+                                                    <th style="padding: 0 0 0 15px;" align="right">Harga</th>
                                                 </tr>
                                                 <tr>
-                                                    <td style="padding: 5px 15px 5px 0;">Item number 1</td>
+                                                    <td style="padding: 5px 15px 5px 0;">{{ $jenisMobil }}</td>
                                                     <td style="padding: 0 15px;">1</td>
-                                                    <td style="padding: 0 0 0 15px;" align="right">$100,00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 0 15px 5px 0;">Shipping + Handling</td>
-                                                    <td style="padding: 0 15px;">1</td>
-                                                    <td style="padding: 0 0 0 15px;" align="right">$10,00</td>
-                                                </tr>
-                                                <tr style="border-bottom:2px solid #ecedee;text-align:left;padding:15px 0;">
-                                                    <td style="padding: 0 15px 5px 0;">Sales Tax</td>
-                                                    <td style="padding: 0 15px;">1</td>
-                                                    <td style="padding: 0 0 0 15px;" align="right">$10,00</td>
+                                                    <td style="padding: 0 0 0 15px;" align="right">{{ $harga }}</td>
                                                 </tr>
                                                 <tr style="border-bottom:2px solid #ecedee;text-align:left;padding:15px 0;">
                                                     <td style="padding: 5px 15px 5px 0; font-weight:bold">TOTAL</td>
                                                     <td style="padding: 0 15px;"></td>
-                                                    <td style="padding: 0 0 0 15px; font-weight:bold" align="right">
-                                                        $120,00</td>
+                                                    <td style="padding: 0 0 0 15px; font-weight:bold" align="right">{{ $harga }}</td>
                                                 </tr>
                                             </table>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                            <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;line-height:16px;text-align:left;color:#a2a2a2;">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                                                    volutpat ut est ac dignissim. Donec pulvinar ligula metus, sed
-                                                    imperdiet quam pretium at.</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                            <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:24px;font-weight:bold;line-height:22px;text-align:center;color:#525252;">
-                                                Let us know your experience
+                                            <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:18px;font-weight:bold;line-height:22px;text-align:center;color:#525252; margin-top: 2rem;">
+                                                Alamat Penagihan
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:22px;text-align:left;color:#525252;">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                                                    volutpat ut est ac dignissim. Donec pulvinar ligula metus, sed
-                                                    imperdiet quam pretium at. Cras finibus hendrerit magna nec euismod.
-                                                    Ut eget
-                                                    justo vel enim ultrices pharetra. Morbi tellus libero, sollicitudin
-                                                    pulvinar porta ac, auctor sed neque. </p>
+                                                <p><i>{{ $nama }}</i></p>
+                                                <p><i>{{ $alamat }}</i></p>
+                                                <p><i>{{ $noTelp }}</i></p>
+                                                <p><i><u><a href="#">{{ $recipient }}</a></u></i></p>
                                             </div>
                                         </td>
                                     </tr>
@@ -201,51 +168,6 @@
                                             </table>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                            <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;text-align:left;color:#525252;">
-                                                Best regards,<br><br> Csaba Kissi<br>Elerion ltd., CEO and Founder<br>
-                                                <a href="https://www.htmlemailtemplates.net" style="color:#2F67F6">htmlemailtemplates.net</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div style="Margin:0px auto;max-width:600px;">
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-                <tbody>
-                    <tr>
-                        <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
-                            <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:bottom;width:100%;">
-                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-                                    <tbody>
-                                        <tr>
-                                            <td style="vertical-align:bottom;padding:0;">
-                                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-                                                    <tr>
-                                                        <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
-                                                            <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:300;line-height:1;text-align:center;color:#575757;">
-                                                                Some Firm Ltd, 35 Avenue. City 10115, USA
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td align="center" style="font-size:0px;padding:10;word-break:break-word;">
-                                                            <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:300;line-height:1;text-align:center;color:#575757;">
-                                                                <a href="" style="color:#575757">Unsubscribe</a> from our
-                                                                emails
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </td>

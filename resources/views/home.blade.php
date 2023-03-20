@@ -20,7 +20,7 @@
                 <h1>RentCar solusi rental mobil untuk perjalananmu</h1>
                 <p>Sewa mobil dapat menjadi solusi terbaik bagi Anda jika Anda membutuhkan kendaraan untuk jarak jauh atau
                     untuk keperluan bisnis dan tidak ingin memiliki kendaraan tetap.</p>
-                <button type="button" class="btn btn-warning">Hubungi Kami</button>
+                    <a href="https://api.whatsapp.com/send?phone=6282343103501" class="btn btn-warning" target="_blank">Hubungi Kami</a>
             </div>
         </div>
     </section>
@@ -39,7 +39,7 @@
                     <p>RentCar adalah salah satu agen rental mobil. Kami memiliki berbagai macam kendaraan yang siap
                         digunakan untuk perjalanan jauh maupun dekat. Seluruh armada kami selalu mendapatkan pengecekan dan
                         perawatan secara rutin sehingga dipastikan semua kendaraan kami dalam keadaan baik saat disewa.</p>
-                    <button type="button" class="btn btn-warning">Selengkapnya</button>
+                    <a href="{{ route('tentang') }}" class="btn btn-warning">Selengkapnya</a>
                 </div>
                 <div class="picabout">
                     <img src="{{ asset('img/happy.jpg') }}">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EmailController extends Controller
@@ -19,13 +20,21 @@ class EmailController extends Controller
             'tglSewa' => 'required',
         ]);
         
+        $noSewa = 'RC'.now()->format('d').now()->format('m').now()->format('y').rand(10,99);
+
         if($this->isOnline()) {
             $emailData = [
                 'recipient' => $request->email,
                 'fromEmail' => 'r3za.dev@gmail.com',
                 'fromName' => 'RentCar',
                 'subject' => 'Pesanan',
-                'body' => 'Sometimes I dont know what I am',
+                'nama' => $request->nama,
+                'tglSewa' => $request->tglSewa,
+                'noSewa' => $noSewa,
+                'jenisMobil' => $request->jenisMobil,
+                'harga' => $request->harga,
+                'alamat' => $request->alamat,
+                'noTelp' => $request->noTelp,
             ];
 
             Mail::send('email-template', $emailData, function ($message) use ($emailData) {
@@ -36,7 +45,7 @@ class EmailController extends Controller
 
             $order = new Order();
             $order->car_id = $request->car_id;
-            $order->noSewa = 'RC'.now()->format('d').now()->format('m').now()->format('y').rand(10,99);
+            $order->noSewa = $noSewa;
             $order->nama = $request->nama;
             $order->email = $request->email;
             $order->noTelp = $request->noTelp;
@@ -62,5 +71,12 @@ class EmailController extends Controller
         } else {
             return false;
         }
+    }
+
+    public function wa(Request $request)
+    {
+            $wa = $request->wa;
+            return Redirect::to('https://api.whatsapp.com');
+            // header('location:https://api.whatsapp.com/send?phone=$wa');
     }
 }
