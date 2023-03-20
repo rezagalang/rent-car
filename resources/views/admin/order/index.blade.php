@@ -1,12 +1,12 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
-@section('title', 'Car')
+@section('title', 'Order')
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Car'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Order'])
     <div class="row mt-4 mx-4">
         <div class="card mb-4">
             <div class="card-header pb-0">
-                <h6>Car</h6>
+                <h6>List Order</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-4">
@@ -14,28 +14,28 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Jenis Mobil</th>
-                                <th>Harga</th>
-                                <th>Transmisi</th>
-                                <th>Bahan Bakar</th>
+                                <th>No. Sewa</th>
+                                <th>Nama Penyewa</th>
+                                <th>No. Telepon</th>
+                                <th>Tanggal Sewa</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php($i = 1)
-                            @foreach($cars as $car)
+                            @foreach($orders as $order)
                                 <tr>
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $car->jenisMobil }}</td>
-                                    <td>{{ $car->harga }}</td>
-                                    <td>{{ $car->transmisi }}</td>
-                                    <td>{{ $car->bahanBakar }}</td>
+                                    <td>{{ $order->noSewa }}</td>
+                                    <td>{{ $order->nama }}</td>
+                                    <td>{{ $order->noTelp }}</td>
+                                    <td>{{ $order->tglSewa }}</td>
                                     <td>
-                                        <a href="{{route('car.edit', $car->id )}}" class="btn btn-sm btn-primary rounded-pill btn-nol" title="Update">
+                                        <a href="{{route('order.edit', $order->id )}}" class="btn btn-sm btn-primary rounded-pill btn-nol" title="Update">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             &nbsp;Edit
                                         </a>&nbsp;
-                                        <a href="{{ route('car.delete', $car->id) }}" class="btn btn-sm btn-danger deleteBtn rounded-pill" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></i></a>
+                                        <a href="{{ route('order.delete', $order->id) }}" class="btn btn-sm btn-danger deleteBtn rounded-pill" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></i></a>
                                     </td>
                                 </tr>
                             @endforeach

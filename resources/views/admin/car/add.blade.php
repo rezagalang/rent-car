@@ -16,8 +16,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="namaBarang" class="form-control-label">Nama Barang</label>
-                                    <input type="text" class="form-control @error('namaBarang') is-invalid @enderror" id="namaBarang" name="namaBarang" placeholder="Masukkan Nama Barang..." value="{{ old('namaBarang') }}">
+                                    <label for="jenisMobil" class="form-control-label">Jenis Mobil</label>
+                                    <input type="text" class="form-control @error('jenisMobil') is-invalid @enderror" id="jenisMobil" name="jenisMobil" placeholder="Masukkan Nama Barang..." value="{{ old('jenisMobil') }}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="merk" class="form-control-label">Merk</label>

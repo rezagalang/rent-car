@@ -1,31 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdmController;
-use App\Http\Controllers\CarController;
-use App\Http\Controllers\ResetPassword;
-use App\Http\Controllers\FrontController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\{
+    AdmController, CarController, EmailController, ResetPassword, FrontController, LoginController
+};
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', [FrontController::class, 'index'])->name('home');
+    Route::get('/sewa', [FrontController::class, 'sewa'])->name('sewa');
+    Route::get('/tentang', [FrontController::class, 'tentang'])->name('tentang');
+    Route::get('/kontak', [FrontController::class, 'kontak'])->name('kontak');
+    Route::get('/{car}/detail', [FrontController::class, 'detail'])->name('detail');
+    Route::post('/send', [EmailController::class, 'send'])->name('send.email');
+    Route::post('/wa', [EmailController::class, 'wa'])->name('wa');
 
-Route::get('/', [FrontController::class, 'index'])->middleware('guest')->name('home');
-Route::get('/sewa', [FrontController::class, 'sewa'])->middleware('guest')->name('sewa');
-Route::get('/tentang', [FrontController::class, 'tentang'])->middleware('guest')->name('tentang');
-Route::get('/kontak', [FrontController::class, 'kontak'])->middleware('guest')->name('kontak');
-Route::get('/{car}/detail', [FrontController::class, 'detail'])->middleware('guest')->name('detail');
-
-Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
-Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
+    Route::get('/login', [LoginController::class, 'show'])->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
+});
 
 Route::group(['middleware' => 'auth'], function () {
     
@@ -40,6 +31,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{car}/edit', [CarController::class, 'edit'])->name('edit');
         Route::patch('/{car}/edit', [CarController::class, 'update'])->name('update');
         Route::get('/{car}/delete', [CarController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['prefix' => 'admin/order' , 'as' => 'order.'] , function() {
+        Route::get('/', [CarController::class, 'order'])->name('index');
+        Route::get('/{order}/edit', [CarController::class, 'editOrder'])->name('edit');
+        Route::patch('/{order}/edit', [CarController::class, 'updateOrder'])->name('update');
+        Route::get('/{order}/delete', [CarController::class, 'orderDestroy'])->name('delete');
     });
 
     Route::group(['prefix' => 'admin/user' , 'as' => 'user.'] , function() {

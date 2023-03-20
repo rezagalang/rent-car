@@ -1,6 +1,7 @@
 @extends('layouts.front')
 
 @section('title', 'Home')
+
 @section('content')
     <section class="secthero" id="hero">
         <header class="header">
@@ -19,7 +20,7 @@
                 <h1>RentCar solusi rental mobil untuk perjalananmu</h1>
                 <p>Sewa mobil dapat menjadi solusi terbaik bagi Anda jika Anda membutuhkan kendaraan untuk jarak jauh atau
                     untuk keperluan bisnis dan tidak ingin memiliki kendaraan tetap.</p>
-                <button type="button" class="btn btn-warning">Hubungi Kami</button>
+                    <a href="https://api.whatsapp.com/send?phone=6282343103501" class="btn btn-warning" target="_blank">Hubungi Kami</a>
             </div>
         </div>
     </section>
@@ -38,7 +39,7 @@
                     <p>RentCar adalah salah satu agen rental mobil. Kami memiliki berbagai macam kendaraan yang siap
                         digunakan untuk perjalanan jauh maupun dekat. Seluruh armada kami selalu mendapatkan pengecekan dan
                         perawatan secara rutin sehingga dipastikan semua kendaraan kami dalam keadaan baik saat disewa.</p>
-                    <button type="button" class="btn btn-warning">Selengkapnya</button>
+                    <a href="{{ route('tentang') }}" class="btn btn-warning">Selengkapnya</a>
                 </div>
                 <div class="picabout">
                     <img src="{{ asset('img/happy.jpg') }}">
@@ -118,12 +119,12 @@
                                 <div class="card-header pb-0 pt-3 bg-transparent product">
                                     @if ($car->image)
                                         <div>
-                                            <img src="{{ asset('storage/'.$car->image) }}" alt="{{ $car->namaBarang }}" class="img-fluid">
+                                            <img src="{{ asset('storage/'.$car->image) }}" alt="{{ $car->jenisMobil }}" class="img-fluid">
                                         </div>
                                     @endif
                                 </div>
                                 <div class="card-body p-3">
-                                    <h4 class="text-capitalize">{{ $car->namaBarang }}</h4>
+                                    <h4 class="text-capitalize">{{ $car->jenisMobil }}</h4>
                                     <h6>{{ 'Rp. '.$car->harga.' / Day' }}</h6>
                                     <a href="{{ route('detail', $car->id) }}" class="btn btn-warning">Lebih Detail</a>
                                 </div>

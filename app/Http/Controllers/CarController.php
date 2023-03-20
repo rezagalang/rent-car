@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -23,7 +24,7 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'namaBarang' => 'required',
+            'jenisMobil' => 'required',
             'merk' => 'required',
             'harga' => 'required|numeric',
             'tempatDuduk' => 'required|numeric',
@@ -39,7 +40,7 @@ class CarController extends Controller
             $car->image = $request->file('image')->store('images');
         }
 
-        $car->namaBarang = $request->namaBarang;
+        $car->jenisMobil = $request->jenisMobil;
         $car->merk = $request->merk;
         $car->harga = $request->harga;
         $car->tempatDuduk = $request->tempatDuduk;
@@ -52,11 +53,6 @@ class CarController extends Controller
         return redirect()->route('car.index');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit(Car $car)
     {
         return view('admin.car.edit', compact('car'));
@@ -65,7 +61,7 @@ class CarController extends Controller
     public function update(Request $request, Car $car)
     {
         $dataCar = $request->validate([
-            'namaBarang' => 'required',
+            'jenisMobil' => 'required',
             'merk' => 'required',
             'harga' => 'required|numeric',
             'tempatDuduk' => 'required|numeric',
@@ -96,5 +92,41 @@ class CarController extends Controller
         $car->delete();
         Alert::toast('Data berhasil dihapus', 'success')->autoClose(5000);
         return redirect()->route('car.index');
+    }
+
+
+    // Order
+    public function order()
+    {
+        $orders = Order::all();
+        return view('admin.order.index', compact('orders'));
+    }
+
+    public function editOrder(Order $order)
+    {
+        return view('admin.order.edit', compact('order'));
+    }
+
+    public function updateOrder(Request $request, Order $order)
+    {
+        $dataOrder = $request->validate([
+            'nama' => 'required',
+            'email' => 'required|email',
+            'noTelp' => 'required|numeric',
+            'alamat' => 'required',
+            'tglSewa' => 'required',
+        ]);
+        
+        Order::where('id', $order->id)->update($dataOrder);
+
+        Alert::toast('Data berhasil dihapus', 'success')->autoClose(5000);
+        return redirect()->route('order.index');
+    }
+
+    public function orderDestroy(Order $order)
+    {
+        $order->delete();
+        Alert::toast('Data berhasil dihapus', 'success')->autoClose(5000);
+        return redirect()->route('order.index');
     }
 }
